@@ -14,8 +14,8 @@ df = [dict(Task="UGC SP #1", Start='2022-01-25', Finish='2022-01-26', Resource='
       dict(Task="UGC FA #4", Start='2022-12-12', Finish='2022-12-13', Resource='regular'),
 
       dict(Task="CUWiP", Start='2022-08-29', Finish='2022-10-10', Resource='awards'),
-      dict(Task="WiP Group Grant", Start='2022-10-08', Finish='2022-10-22', Resource='awards'),
-      dict(Task="Ugrad Scholarship Nomination", Start='2023-01-25', Finish='2023-02-08', Resource='awards'),
+      dict(Task="WiP UNT Group Grant", Start='2022-10-08', Finish='2022-10-22', Resource='awards'),
+      dict(Task="Ugrad Scholarship Noms.", Start='2023-01-25', Finish='2023-02-08', Resource='awards'),
       dict(Task="Honors Day Nominations", Start='2023-02-08', Finish='2023-02-22', Resource='awards')
      ]
 
