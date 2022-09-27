@@ -1,23 +1,13 @@
 import plotly.figure_factory as ff
+import pandas as pd
 
-df = [dict(Task="UGC Sp #1", Start='2022-01-25', Finish='2022-01-26', Resource='regular'),
-      dict(Task="UGC Sp #2", Start='2022-02-22', Finish='2022-02-23', Resource='regular'),
-      dict(Task="UGC Sp #3", Start='2022-03-29', Finish='2022-03-30', Resource='regular'),
-      dict(Task="UGC Sp #4", Start='2022-04-26', Finish='2022-04-27', Resource='regular'),
-      dict(Task="Data collect for TRACDAT", Start='2022-03-01', Finish='2022-05-01', Resource='tasks'),
+def csv2dict(inp):
+    return dict(Task=inp['name'], Start=inp['startdate'].strip(), Finish=inp['enddate'].strip(), Resource=inp['type'].strip(), Comments=inp['comments'] )
 
-      dict(Task="Vote on PHYS pre-reqs", Start='2022-08-17', Finish='2022-08-24', Resource='tasks'),
-      dict(Task="UGC Fa #1", Start='2022-09-26', Finish='2022-09-27', Resource='regular'),
-      dict(Task="UGC Fa #2", Start='2022-10-31', Finish='2022-11-01', Resource='regular'),
-      dict(Task="UGC Fa #3", Start='2022-11-28', Finish='2022-11-29', Resource='regular'),
-      dict(Task="UGC Fa #4", Start='2022-12-12', Finish='2022-12-13', Resource='regular'),
+df = pd.read_csv ('data.csv', names=['name','startdate','enddate','type','comments'], comment='#')
+df = [ csv2dict(df.loc[i]) for i in range(len(df))    ]
 
-      dict(Task="CUWiP", Start='2022-08-29', Finish='2022-10-10', Resource='awards'),
-      dict(Task="WiP UNT Group Grant", Start='2022-10-08', Finish='2022-10-22', Resource='awards'),
 
-      dict(Task="Ugrad Scholarship Noms.", Start='2023-01-25', Finish='2023-02-08', Resource='awards'),
-      dict(Task="Honors Day Nominations", Start='2023-02-08', Finish='2023-02-22', Resource='awards')
-     ]
 
 colors = {'tasks': 'rgb(252,192,89)',
           'awards': 'rgb(232,72,127)',
@@ -25,11 +15,27 @@ colors = {'tasks': 'rgb(252,192,89)',
 
 fig = ff.create_gantt(df, colors=colors, index_col='Resource', show_colorbar=True,
                       group_tasks=True)
-fig.update_layout(xaxis = dict(showgrid=True, ticklabelmode="period", dtick='M1')  )
-fig.update_layout(title="<b>UGC Gantt Chart 2022</b>", 
-                font=dict(family="Arial",size=18),
-                legend=dict(orientation="h")
-                )
+
+#for i in range(len(fig['data'])):
+#    fig['data'][i].update( hoverinfo='name')
+
+fig.update_layout(
+    xaxis = dict(showgrid=True, ticklabelmode="period", dtick='M1',
+                rangeselector=dict(x=.1,y=1.01)
+                 ),
+    yaxis = dict(showgrid=True, automargin=True, ticklen=10))
+
+fig.update_layout(
+    title="<b>UGC Gantt Chart 2022</b>", 
+    title_xanchor='center', title_x=0.5,
+    font=dict(family="Arial",size=20),
+    legend=dict(orientation="h"        ,yanchor="bottom"        ,xanchor="right"        ,y=1.0        ,x=1)
+    )
+
+#add vline for today's date
+from datetime import datetime
+today = datetime.today().strftime('%Y-%m-%d')
+fig.add_vline(today)
 
 #fig.show()
 fig.write_html('save.html')
