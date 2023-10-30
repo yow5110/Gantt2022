@@ -20,10 +20,11 @@ fig = ff.create_gantt(df, colors=colors, index_col='Resource', show_colorbar=Tru
 #    fig['data'][i].update( hoverinfo='name')
 
 fig.update_layout(
-    xaxis = dict(showgrid=True, ticklabelmode="period", dtick='M1',
+    xaxis = dict(showgrid=True, ticklabelmode="period", dtick='M1', tickformat="%b\n%Y",
                 rangeselector=dict(x=.1,y=1.01)
                  ),
     yaxis = dict(showgrid=True, automargin=True, ticklen=10))
+# more tick control see https://stackoverflow.com/questions/68475195/dticks-and-plotly-how-to-control-what-is-shown-on-x-axes
 
 fig.update_layout(
     title="<b>UGC Gantt Chart 2023</b>", 
