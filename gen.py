@@ -26,7 +26,7 @@ fig.update_layout(
     yaxis = dict(showgrid=True, automargin=True, ticklen=10))
 
 fig.update_layout(
-    title="<b>UGC Gantt Chart 2022</b>", 
+    title="<b>UGC Gantt Chart 2023</b>", 
     title_xanchor='center', title_x=0.5,
     font=dict(family="Arial",size=20),
     legend=dict(orientation="h"        ,yanchor="bottom"        ,xanchor="right"        ,y=1.0        ,x=1)
