@@ -27,7 +27,7 @@ fig.update_layout(
 # more tick control see https://stackoverflow.com/questions/68475195/dticks-and-plotly-how-to-control-what-is-shown-on-x-axes
 
 fig.update_layout(
-    title="<b>UGC Gantt Chart 2023</b>", 
+    title="<b>UGC Gantt Chart </b>", 
     title_xanchor='center', title_x=0.5,
     font=dict(family="Arial",size=20),
     legend=dict(orientation="h"        ,yanchor="bottom"        ,xanchor="right"        ,y=1.0        ,x=1)
